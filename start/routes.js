@@ -22,7 +22,7 @@ Route.get('/', () => {
 
 // rotas de auth
 Route.post('/register', 'AuthController.register')
-Route.get('/login', 'AuthController.login')
+Route.post('/login', 'AuthController.login')
 
 // rotas de car
 Route.group(() => {
