@@ -13,7 +13,7 @@ class AuthController {
     async login({ request, auth }){
         const possibleUser = request.only(['email', 'password'])
         const token = await auth.attempt(possibleUser.email, possibleUser.password)
-        let data = [token, request.only('email')]
+        let data = [token, auth]
         return data
     }
 }
