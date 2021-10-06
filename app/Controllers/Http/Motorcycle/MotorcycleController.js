@@ -21,7 +21,7 @@ class MotorcycleController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    const motorcycles = await Motorcycle.all()
+    const motorcycles = await Motorcycle.query().orderBy('created_at', 'desc').fetch()
     return motorcycles
   }
 

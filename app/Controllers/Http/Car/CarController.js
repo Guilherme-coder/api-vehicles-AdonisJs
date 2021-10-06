@@ -21,7 +21,7 @@ class CarController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    const cars = await Car.all()
+    const cars = await Car.query().orderBy('created_at', 'desc').fetch()
     return cars
   }
 
@@ -47,7 +47,7 @@ class CarController {
    */
   async store ({ request, auth, response }) {
     const data = request.all()
-    const car = await Car.create({ 
+    const car = await Car.create({
       advertiser: auth.user.id,
       brand: data.brand,
       model: data.model,
