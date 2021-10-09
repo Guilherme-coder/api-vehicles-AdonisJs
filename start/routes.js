@@ -24,6 +24,10 @@ Route.get('/', () => {
 Route.post('/register', 'AuthController.register')
 Route.post('/login', 'AuthController.login')
 
+Route.group(() => {
+  Route.get('/load_session', 'AuthController.loadSession')
+}).middleware('auth')
+
 // rotas de car
 Route.group(() => {
   Route.resource('cars', 'Car/CarController').apiOnly()
