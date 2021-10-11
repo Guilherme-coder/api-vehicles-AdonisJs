@@ -3,11 +3,15 @@
 const User = use('App/Models/User')
 
 class AuthController {
-    async register({ request }){
+    async register({ request, auth }){
         const data = request.only(['username', 'email', 'password'])
         const user = await User.create(data)
 
-        return user
+        const possibleUser = request.only(['email', 'password'])
+        const token = await auth.attempt(possibleUser.email, possibleUser.password)
+        let dataToken = [token]
+
+        return dataToken
     }
 
     async login({ request, auth }){
