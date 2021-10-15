@@ -24,6 +24,8 @@ Route.get('/', () => {
 Route.post('/register', 'AuthController.register')
 Route.post('/login', 'AuthController.login')
 
+Route.post('/upload', 'Car/CarController.upload')
+
 Route.group(() => {
   Route.get('/load_session', 'AuthController.loadSession')
 }).middleware('auth')

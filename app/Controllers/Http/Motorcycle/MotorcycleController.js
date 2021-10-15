@@ -21,7 +21,21 @@ class MotorcycleController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    const motorcycles = await Motorcycle.query().orderBy('created_at', 'desc').fetch()
+    const motorcycles = await Motorcycle
+                                .query()
+                                .select('id',
+                                        'advertiser',
+                                        'brand',
+                                        'model',
+                                        'description',
+                                        'category',
+                                        'year',
+                                        'price',
+                                        'category',
+                                        'created_at',
+                                        'picture_one')
+                                .orderBy('created_at', 'desc')
+                                .fetch()
     return motorcycles
   }
 
@@ -56,7 +70,12 @@ class MotorcycleController {
       year: data.year,
       price: data.price,
       capacity: data.capacity,
-      picture: data.picture
+      picture_one: data.picture_one,
+      picture_two: data.picture_two,
+      picture_three: data.picture_three,
+      picture_four: data.picture_four,
+      picture_five: data.picture_five,
+      picture_six: data.picture_six
     })
 
     return motorcycle

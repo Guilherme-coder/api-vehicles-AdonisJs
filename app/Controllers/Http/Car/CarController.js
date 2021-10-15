@@ -1,6 +1,7 @@
 'use strict'
 
 const Car = use('App/Models/Car/Car')
+const Images = use('App/Models/Image/Images')
 const Hash = use("Hash")
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
@@ -21,7 +22,20 @@ class CarController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    const cars = await Car.query().orderBy('created_at', 'desc').fetch()
+    const cars = await Car
+                        .query()
+                        .select('id',
+                                'advertiser',
+                                'brand',
+                                'model',
+                                'description',
+                                'year',
+                                'price',
+                                'engine',
+                                'created_at',
+                                'picture_one')
+                        .orderBy('created_at', 'desc')
+                        .fetch()
     return cars
   }
 
@@ -55,7 +69,12 @@ class CarController {
       year: data.year,
       price: data.price,
       engine: data.engine,
-      picture: data.picture
+      picture_one: data.picture_one,
+      picture_two: data.picture_two,
+      picture_three: data.picture_three,
+      picture_four: data.picture_four,
+      picture_five: data.picture_five,
+      picture_six: data.picture_six
     })
     return car
   }
